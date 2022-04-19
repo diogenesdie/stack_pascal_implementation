@@ -1,12 +1,10 @@
 unit StackUnit;
 
 interface 
-const MAX = 50;
+const MAX = 5;
+
 type Elem = integer;
-     Stack = record
-       top: integer;
-       data: array[1..MAX] of Elem;
-    end;
+     Stack = array[0..MAX] of Elem;
 
 var s: Stack;
 
@@ -22,20 +20,20 @@ implementation
 
 procedure init(var s:Stack);
 begin
-    s.top := 0;
+    s[0] := 0;
 end;
 
 procedure print(var s: Stack);
 var i: integer;
 begin
-    for i := 1 to s.top do
-        write(s.data[i]);
+    for i := 1 to s[0] do
+        write(s[i], ' ');
     writeln;
 end;
 
 function isEmpty(var s:Stack):boolean;
 begin
-    if s.top = 0 then
+    if s[0] = 0 then
         isEmpty := true
     else
         isEmpty := false;
@@ -43,7 +41,7 @@ end;
 
 function isFull(var s:Stack):boolean;
 begin
-    if s.top = MAX then
+    if s[0] = MAX then
         isFull := true
     else
         isFull := false;
@@ -54,7 +52,7 @@ begin
     if isEmpty(s) then
         writeln('Stack is empty')
     else
-        Top := s.data[s.top];
+        Top := s[s[0]];
 end;
 
 procedure push(var s:Stack; x:Elem);
@@ -63,8 +61,8 @@ begin
         writeln('Stack overflow')
     else
     begin
-        s.top := s.top + 1;
-        s.data[s.top] := x;
+        s[0] := s[0] + 1;
+        s[s[0]] := x;
     end;
 end;
 
@@ -74,8 +72,8 @@ begin
         writeln('Stack is empty')
     else
     begin
-        pop := s.data[s.top];
-        s.top := s.top - 1;
+        pop := s[s[0]];
+        s[0] := s[0] - 1;
     end;
 end;
 
